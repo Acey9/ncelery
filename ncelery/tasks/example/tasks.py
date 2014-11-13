@@ -8,8 +8,8 @@ from ncelery.celery import get_task_logger
 
 logger = get_task_logger('ncelery.example')
 
-@ncelery.task(ignore_result=False, throws=(SoftTimeLimitExceeded, TimeLimitExceeded))
-#@ncelery.task(ignore_result=False)
+#@ncelery.task(ignore_result=False, throws=(SoftTimeLimitExceeded, TimeLimitExceeded))
+@ncelery.task(ignore_result=False)
 def add(x, y):
     logger.info("add...")
     #import time
