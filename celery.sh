@@ -21,6 +21,13 @@ create_conf_file() {
 		cd $OLD_DIR
 		}
 
+create_api_pkg() {
+		OLD_DIR=`pwd`
+		cd $DAEMON_PATH/api
+		sh api.sh
+		cd $OLD_DIR
+		}
+
 run_cmd() {
 		rcmd=$1
 		echo 'runing: '$rcmd
@@ -61,6 +68,9 @@ ncelery_stopwk() {
 		}
 
 case $1 in 
+	api)
+		create_api_pkg	
+		;;
 	conf)
 		create_conf_file
 		;;
@@ -89,5 +99,5 @@ case $1 in
 		ncelery_stopwk "$2" && ncelery_startwk "$2"
 		;;
 	*)
-		echo "usage:$0 start|stop|restart|reload|conf|stopwk|startwk|restartwk|status [worker]"
+		echo "usage:$0 api|start|stop|restart|reload|conf|stopwk|startwk|restartwk|status [worker]"
 esac
