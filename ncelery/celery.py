@@ -13,7 +13,7 @@ from __future__ import absolute_import
 from logging.config import fileConfig
 from celery.utils.log import get_task_logger
 from celery import Celery
-from ncelery import conf
+from .config import conf
 
 get_task_logger = get_task_logger
 
@@ -24,7 +24,6 @@ ncelery = Celery(conf.MAIN_NAME,
 )
 
 ncelery.config_from_object(conf)
-
 fileConfig(conf.LOGGING_CONFIG_FILE)
 
 if __name__ == '__main__':

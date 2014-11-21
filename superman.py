@@ -12,9 +12,9 @@ import socket
 import copy
 import sys
 import os
-sys.path.append(os.sep.join(['../../..']))
+#sys.path.append(os.sep.join(['../../..']))
 
-from ncelery import conf as ncconf
+from ncelery.config import conf as ncconf
 #celery conf
 CELERY_USER = "top"
 CELERY_WORKDIR, _ = os.path.split(ncconf.PROJECT_PATH)
@@ -27,16 +27,18 @@ NIGHTSWATCH_PID_FILE = '/var/log/2ncelery/nighitswatch.pid' #注意权限的问�
 #supervisor conf
 SPVR_START_PROGRAM_USER = "root"
 SPVR_PROGRAM_LOG_DIR = "/var/log/2supervisord/"
-SPVR_SOCK = '/tmp/supervisor.sock'
-SPVR_PORT = 9001
+SPVR_SOCK = '/var/run/ncelery.supervisor.sock'
+SPVR_PORT = 9999
 SPVR_ADMIN = 'pandafisher'
 SPVR_ADMIN_PASSWORD = 'pandafisher'
 SPVR_LOG_FILE = '/var/log/2supervisord/supervisord.log'
 SPVR_PID_FILE = '/var/run/2supervisord.pid'
 SPVR_CHILDLOGDIR = '/var/log/2supervisord/'
 
+#supervisord configuration file.
+SUPERVISORD_CONF = '/etc/ncelery/supervisord/supervisord.conf'
 
-CONF_FILE_DIR, _ = os.path.split(ncconf.SUPERVISORD_CONF)
+CONF_FILE_DIR, _ = os.path.split(SUPERVISORD_CONF)
 
 #queue
 PHISHING_SCREENSHOT_NAME = 'screenshot.phishing'

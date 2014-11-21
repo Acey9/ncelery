@@ -19,7 +19,7 @@ from email.MIMEMultipart import MIMEMultipart
 from email.utils import formatdate
 from email.MIMEText import MIMEText
 
-import conf
+from .config import conf
 from utils._requests import Request
 
 MAIL = {

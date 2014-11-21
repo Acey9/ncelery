@@ -8,7 +8,7 @@ python "pick.py" $SRC $PKG_NAME
 
 mkdir -p "${PKG_PATH}/utils"
 cp $SRC/utils/ ${PKG_PATH}/ -fr
-cp $SRC/conf.py $PKG_PATH
+cp $SRC/config ${PKG_PATH}/ -fr
 cp $SRC/celery.py ${PKG_PATH}
 cp $SRC/exception.py ${PKG_PATH}
 sed -i -e "s/IS_NCELERY_API = False/IS_NCELERY_API = True/g" $PKG_PATH/conf.py

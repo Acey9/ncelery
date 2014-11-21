@@ -10,7 +10,10 @@
 #. /etc/rc.d/init.d/functions
 
 DAEMON_PATH=`dirname $0`
-SUPERVISORD_CONF=`grep SUPERVISORD_CONF ncelery/conf.py|grep -v 'grep' |awk -F "=" '{print $2}'|awk -F "\'" '{print $2}'`
+OLD_DIR=`pwd`
+cd $DAEMON_PATH
+SUPERVISORD_CONF=`grep SUPERVISORD_CONF superman.py|grep -v 'grep' |awk -F "=" '{print $2}'|awk -F "\'" '{print $2}'`
+cd $OLD_DIR
 create_conf_file() { 
 		OLD_DIR=`pwd`
 		cd $DAEMON_PATH
