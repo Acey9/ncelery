@@ -43,6 +43,7 @@ CELERY_ANNOTATIONS = {}
 APP_MODE_NUM = {
         #example
         'ncelery.tasks.example':1,
+        'ncelery.tasks.wooyun':1,
         }
 EMD_PHISHING_NUM = 1
 SCREENSHOT_PHISHING_NUM = 1

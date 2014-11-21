@@ -10,3 +10,6 @@
 # -----------------------------------------------------
 class RuntimeException(Exception):
     pass
+
+class WooYunResultException(Exception):
+    pass
