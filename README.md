@@ -187,7 +187,7 @@ ncelery是一个celery快速开发项目，目的在于快速增加celery task�
 ### api use usage
 	生成api
 	$cd ncelery
-	$./celery api
+	$./celery.sh api
 	执行完成后再api/dist目录下面就能看到类似这样的包了，ncelery_api-1.0.1400-py2.7.egg
 	
 	api用法,请到需要用到平台安装egg包
