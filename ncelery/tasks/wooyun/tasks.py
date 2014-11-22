@@ -19,7 +19,7 @@ from ncelery.celery import get_task_logger
 #Service logic
 import wooyun_api
 
-logger = get_task_logger('ncelery.third_notice')
+logger = get_task_logger('ncelery.wooyun')
 
 #Create a task by using the task() decorator
 @ncelery.task(ignore_result=False)
