@@ -55,18 +55,24 @@ class Picker(object):
                 continue
             shutil.copy(INIT_FILE, path)
 
+    def copyTaskconfPy(self, src, dst):
+        src_file = os.path.join(src, 'taskconf.py')
+        dst_file = os.path.join(dst, 'taskconf.py')
+        shutil.copy(src_file, dst_file)
+
     def touchFile(self, py, content):
-        py = py[len(self.pkg_tmp_dir)+1:]
-        path, filename = os.path.split(py)
-        path = os.path.join(ROOT, '%s/%s' % (self.pkg_name, path))
-        if not os.path.exists(path):
-            os.makedirs(path)
-            self.copyInitFile(path)
-        new_path = '%s/%s' % (path, filename)
-        fd = open(new_path, 'a+')
+        src_path, filename = os.path.split(py)
+        dst_path = src_path[len(self.pkg_tmp_dir)+1:]
+        dst_path = os.path.join(ROOT, '%s/%s' % (self.pkg_name, dst_path))
+        if not os.path.exists(dst_path):
+            os.makedirs(dst_path)
+            self.copyInitFile(dst_path)
+            self.copyTaskconfPy(src_path, dst_path)
+        dst_full_path = '%s/%s' % (dst_path, filename)
+        fd = open(dst_full_path, 'a+')
         fd.write(content)
         fd.close()
-        #print '+++++\nfile:\t %s' % new_path
+        #print '+++++\nfile:\t %s' % dst_full_path
         #print 'content:\n%s----' % content 
 
     def pickTask(self, py):

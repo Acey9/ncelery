@@ -11,9 +11,9 @@ cp $SRC/utils/ ${PKG_PATH}/ -fr
 cp $SRC/config ${PKG_PATH}/ -fr
 cp $SRC/celery.py ${PKG_PATH}
 cp $SRC/exception.py ${PKG_PATH}
-sed -i -e "s/IS_NCELERY_API = False/IS_NCELERY_API = True/g" $PKG_PATH/conf.py
-sed -i "/LOGGING_CONFIG_FILE/d" $PKG_PATH/conf.py
-sed -i "/connect(MONGO_DB/d" $PKG_PATH/conf.py
+sed -i -e "s/IS_NCELERY_API = False/IS_NCELERY_API = True/g" $PKG_PATH/config/conf.py
+sed -i "/LOGGING_CONFIG_FILE/d" $PKG_PATH/config/conf.py
+#sed -i "/connect(MONGO_DB/d" $PKG_PATH/conf.py
 sed -i "/include=conf.INCLUDE_APP/d" $PKG_PATH/celery.py
 sed -i "/fileConfig/d" $PKG_PATH/celery.py
 
