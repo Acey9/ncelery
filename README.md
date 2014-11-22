@@ -35,7 +35,7 @@ ncelery是一个celery快速开发项目，目的在于快速增加celery task�
 
 	#app switch conf
 	APP_MODE_NUM = {
-        #example
+        #celery加载哪些任务，后面的数字为worker数量
         'ncelery.tasks.example':1,
         }
 
