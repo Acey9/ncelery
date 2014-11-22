@@ -149,7 +149,15 @@ ncelery是一个celery快速开发项目，目的在于快速增加celery task�
 	├── __init__.py
 	├── taskconf.py
 	└── tasks.py
-	其中taskconf.py文件必须存在，这里配置任务相关信息
+	其中taskconf.py文件必须存在,这里配置任务相关信息
+	
+	#task代码示例
+	$cd ncelery/ncelery/tasks/example
+	$vim tasks.py
+	from ncelery.celery import ncelery
+	@ncelery.task(ignore_result=False)
+	def add(x, y):
+    		return x+y
 	
 	任务配置示例，必须配置以下选项:
 	$cd ncelery/ncelery/tasks/example
@@ -175,14 +183,6 @@ ncelery是一个celery快速开发项目，目的在于快速增加celery task�
 	        "soft_time_limit":10,
 	        },
 	}
-	
-	#task代码示例
-	$cd ncelery/ncelery/tasks/example
-	$vim tasks.py
-	from ncelery.celery import ncelery
-	@ncelery.task(ignore_result=False)
-	def add(x, y):
-    	return x+y
 
 ### api use usage
 	生成api
