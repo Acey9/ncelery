@@ -15,39 +15,11 @@ import os
 #sys.path.append(os.sep.join(['../../..']))
 
 from ncelery.config import conf as ncconf
-#celery conf
-CELERY_USER = "top"
-CELERY_WORKDIR, _ = os.path.split(ncconf.PROJECT_PATH)
-CELERY_LOG_LEVEL = "INFO"
+from supervisord_conf import *
 PROJECT = "ncelery"
-BEAT_IS_ON = False
-BEAT_PID_FILE = '/var/log/2ncelery/celery_beat.pid' #注意权限的问题，所有路径
-NIGHTSWATCH_PID_FILE = '/var/log/2ncelery/nighitswatch.pid' #注意权限的问题，所有路径
-
-#supervisor conf
-SPVR_START_PROGRAM_USER = "root"
-SPVR_PROGRAM_LOG_DIR = "/var/log/2supervisord/"
-SPVR_SOCK = '/var/run/ncelery.supervisor.sock'
-SPVR_PORT = 9999
-SPVR_ADMIN = 'pandafisher'
-SPVR_ADMIN_PASSWORD = 'pandafisher'
-SPVR_LOG_FILE = '/var/log/2supervisord/supervisord.log'
-SPVR_PID_FILE = '/var/run/2supervisord.pid'
-SPVR_CHILDLOGDIR = '/var/log/2supervisord/'
-
-#supervisord configuration file.
-SUPERVISORD_CONF = '/etc/ncelery/supervisord/supervisord.conf'
-
+CELERY_WORKDIR, _ = os.path.split(ncconf.PROJECT_PATH)
 CONF_FILE_DIR, _ = os.path.split(SUPERVISORD_CONF)
 
-#queue
-PHISHING_SCREENSHOT_NAME = 'screenshot.phishing'
-PHISHING_EMD_NAME = 'emd.phishing'
-
-#每个spider的worker运行任务数量后更换进程，防内存泄露
-SPIDER_PER_WORKER=2
-
-#本地监控后面做特殊处理，详见generateCMD()函数
 conf_map = {}
 print ncconf.APP_SUPERVISORD_CONF
 for app_name, conf in ncconf.APP_SUPERVISORD_CONF.iteritems():
@@ -250,13 +222,7 @@ class Superman(object):
             worker_name = worker[0]
             queue = worker[1]
             _conf['queue'] = queue
-            if queue == 'ncq.stable_monitor0':#本地监控北京探测点，其他探测点的目前手动配置吧
-                _c = copy.deepcopy(_conf)
-                _c['pool'] = 'eventlet'#本地监控-P eventlet
-                _c['autoscale'] = ''
-                _c['concurrency'] = 50
-                cmd = CMD % _c
-            elif queue == 'ncq.nmapscan':# nmap scann
+            if queue == 'ncq.nmapscan':# nmap scann
                 _c = copy.deepcopy(_conf)
                 _c['concurrency'] = 5
                 cmd = CMD % _c
