@@ -184,7 +184,7 @@ ncelery是一个celery快速开发项目，目的在于快速增加celery task�
 	        },
 	}
 
-### api use usage
+### api usage
 	生成api
 	$cd ncelery
 	$./celery.sh api
