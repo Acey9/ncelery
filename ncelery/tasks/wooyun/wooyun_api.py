@@ -10,13 +10,8 @@
 #               The server logic code.
 # -----------------------------------------------------
 
-import unittest
 import time
 import json
-import os
-import sys
-
-sys.path.append(os.sep.join(['../../../']))
 
 import taskconf
 from ncelery.celery import get_task_logger
@@ -124,31 +119,4 @@ class WooYun(_requests.Request):
             logger.error('Connect to %s failed. [%s]', url, e)
             raise WooYunResultException(e)
         return value
-
-class WooYunTestCase(unittest.TestCase):
-    
-    @classmethod
-    def setUpClass(cls):
-        pass
-
-    def test_getBugs(self):
-        print 'test_getBugsByCorp...'
-        with WooYun() as wy:
-            d = wy.getBugs(1)
-            self.assertTrue((type(d) == dict))
-
-    def test_getBugDetail(self):
-        print 'test_getBugDetail...'
-        bugid = 21881
-        with WooYun() as wy:
-            d = wy.getBugDetail(bugid)
-            print d
-            self.assertTrue((type(d) == dict))
-
-    @classmethod
-    def tearDownClass(cls):
-        pass
-
-if __name__ == '__main__':
-    unittest.main()
 

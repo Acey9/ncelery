@@ -12,7 +12,7 @@
 DAEMON_PATH=`dirname $0`
 OLD_DIR=`pwd`
 cd $DAEMON_PATH
-SUPERVISORD_CONF=`grep SUPERVISORD_CONF superman.py|grep -v 'grep' |awk -F "=" '{print $2}'|awk -F "\'" '{print $2}'`
+SUPERVISORD_CONF=`grep SUPERVISORD_CONF supervisord_conf.py|grep -v 'grep' |awk -F "=" '{print $2}'|awk -F "\'" '{print $2}'`
 cd $OLD_DIR
 create_conf_file() { 
 		OLD_DIR=`pwd`
