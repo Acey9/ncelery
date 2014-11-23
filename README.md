@@ -194,5 +194,5 @@ ncelery是一个celery快速开发项目，目的在于快速增加celery task�
 	>>>from ncelery.config import conf
 	>>>conf.BROKER = 'amqp://guest@localhost//'       #设置broker
 	>>>conf.BACKEND = 'amqp://guest@localhost//'      #设置backend
-	>>>from ncelery.example.tasks import add
+	>>>from ncelery.tasks.example.tasks import add
 	>>>add.delay(1, 2)
