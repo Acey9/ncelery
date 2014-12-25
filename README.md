@@ -10,6 +10,7 @@ ncelery是一个celery快速开发项目，目的在于快速增加celery task�
 
 ### Install
     $ pip install celery
+    $ pip install requests
 	$ pip install supervisor
 	$ git clone git@github.com:Acey9/ncelery.git
 
